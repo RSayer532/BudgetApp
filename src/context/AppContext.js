@@ -4,6 +4,11 @@ import React, { createContext, useReducer } from 'react';
 export const AppReducer = (state, action) => {
     let budget = 0;
     switch (action.type) {
+
+        case 'NEW_EXPENSE':
+            state.expenses.push(action.payload);
+            state.budget = state.budget + action.payload.cost;
+            return {...state}
         case 'ADD_EXPENSE':
             let total_budget = 0;
             total_budget = state.expenses.reduce(

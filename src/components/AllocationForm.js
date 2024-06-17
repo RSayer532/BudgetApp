@@ -13,6 +13,10 @@ const AllocationForm = () => {
             alert(`The value cannot exceed remaining funds £${remaining}`);
             setCost("");
             return;
+        } else if (typeof(cost) != Number){
+            alert(`The value ${cost} is not a valid value`);
+            setCost="";
+            return;
         }
 
         const expense = {
@@ -58,6 +62,11 @@ const AllocationForm = () => {
                         <option defaultValue value="Reduce" name="reduce">Reduce</option>
                     </select>
 
+
+                    <div className='input-group-prepend' style={{marginLeft: "2rem"}}>
+                        <span>£  </span>
+                        <input type="number" onChange={(event) => setCost()}/>            
+                    </div>
                     <button className="btn btn-primary" onClick={submitEvent} style={{marginLeft: "2rem"}}>
                         Save
                     </button>
