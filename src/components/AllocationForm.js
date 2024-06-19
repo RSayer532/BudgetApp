@@ -1,30 +1,33 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { AppContext } from '../context/AppContext';
+import ActionButton from './ActionButton';
+import DepartmentDropdown from './DepartmentDropdown';
+import AmountInput from './AmountInput';
 
 const AllocationForm = () => {
-    const { dispatch, remaining } = useContext(AppContext);
+    const { dispatch, action } = useContext(AppContext);
 
     const [name, setName] = useState('');
-    const [cost, setCost] = useState('');
-    const [action, setAction] = useState('');
+    const [cost, setCost] = useState(null);
+    const [disabled, setDisabled] = useState('');
 
-    const submitEvent = () => {
-        if (cost > remaining) {
-            alert(`The value cannot exceed remaining funds £${remaining}`);
-            setCost("");
-            return;
-        } else if (typeof(cost) != Number){
-            alert(`The value ${cost} is not a valid value`);
-            setCost="";
-            return;
+    useEffect(() => {
+        if (cost === null || name === '') {
+            setDisabled('disabled');
+        } else {
+            setDisabled('');
         }
+
+    }, [name, cost]);
+
+    const submitAllocation = () => {
 
         const expense = {
             name: name,
             cost: parseInt(cost),
         };
 
-        if(action === 'Reduce'){
+        if (action === 'Reduce'){
             dispatch({
                 type: 'RED_EXPENSE',
                 payload: expense,
@@ -35,44 +38,40 @@ const AllocationForm = () => {
                 payload: expense,
             });
         }
+
+        
     };
 
-    return (
-        <div>
-            <div className="row">
-                <div className="input-group mb-3" style={{marginLeft: "2rem"}}>
-                    <div className="input-group-prepend">
-                        <label className="input-group-text" htmlFor="inputGroupSelect01">Department</label>
-                    </div>
-                    <select className="custom-select" id="inputGroupSelect01" onChange={(event) => setName(event.target.value)}>
-                        <option defaultValue>Choose...</option>
-                        <option value="Marketing" name="marketing">Marketing</option>
-                        <option value="Sales" name="sales">Sales</option>
-                        <option value="Finance" name="finance">Finance</option>
-                        <option value="HR" name="hr">HR</option>
-                        <option value="IT" name="it">IT</option>
-                        <option value="Admin" name="admin">Admin</option>
-                    </select>
+   return (
 
-                    <div className="input-group-prepend" style={{ marginLeft: "2rem"}}>
-                        <label className="input-group-text" htmlFor="inputGroupSelect02">Allocation</label>
-                    </div>
-                    <select className="custom-select" id="inputGroupSelect02" onChange={(event) => setAction(event.target.value)}>
-                        <option defaultValue value="Add" name="add">Add</option>
-                        <option defaultValue value="Reduce" name="reduce">Reduce</option>
-                    </select>
+        <>
+            
+            <div className="col-sm">
+                < DepartmentDropdown setDepartmentName={setName} />
+            </div>
 
-
-                    <div className='input-group-prepend' style={{marginLeft: "2rem"}}>
-                        <span>£  </span>
-                        <input type="number" onChange={(event) => setCost()}/>            
+            <div className="col-sm input-group">
+                <div className="row">
+                    <div className="col">
+                        <ActionButton actionName="Add" />
                     </div>
-                    <button className="btn btn-primary" onClick={submitEvent} style={{marginLeft: "2rem"}}>
-                        Save
-                    </button>
+                    <div className="col">
+                        <ActionButton actionName="Reduce" />
+                    </div>            
                 </div>
             </div>
-        </div>
+
+            <div className='col-sm'>
+               <AmountInput updateCost={setCost} expenseName={name} />
+            </div>
+
+            <div className='col-sm'>
+                <button type="button" className={`btn btn-dark ${disabled}`} value="Submit" onClick={submitAllocation} >Edit</button>
+            </div>
+
+        </>
+            
+     
     );
 };
 

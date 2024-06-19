@@ -7,21 +7,19 @@ const ExpenseList = () => {
     const { expenses } = useContext(AppContext);
 
     return (
-        <table className='table'>
-            <thead>
+        <table className='table table-hover'>
+            <thead className="thead-dark">
                 <tr>
                     <th scope='col'>Department</th>
                     <th scope='col'>Allocated Budget</th>
-                    <th scope='col'>Increase by 10</th>
-                    <th scope='col'>Delete</th>
+                    <th scope='col' className="col-2">Increase by 10</th>
+                    <th scope='col' className="col-2">Delete</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody>                
                 {
-                    expenses.forEach((expense) => {
-                        <ExpenseItem expense={{expense}} />                
-                    })            
-                }
+                    expenses.map((expense) => (<ExpenseItem expense={expense} key={expense.id}  />))
+                }                
             </tbody>
 
         </table>

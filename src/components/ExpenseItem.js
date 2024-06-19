@@ -1,19 +1,20 @@
-import React, {useContext} from 'react';
-import { AppContext } from '../context/AppContext';
-
+import React from 'react';
+import IncreaseButton from './IncreaseButton';
+import DeleteButton from './DeleteButton';
 
 const ExpenseItem = (props) => {
 
+    let expense = props.expense;
+
     return (        
         <tr>
-            <th scope="row">1</th>
-            <td>props.expense.name</td>
-            <td>props.expense.cost</td>
+            <td>{expense.name}</td>
+            <td>{expense.cost.toFixed(2)}</td>
             <td>
-                <button className='btn'>+</button>
+                <IncreaseButton expense={expense} />
             </td>
             <td>
-                <button className='btn'>-</button>
+                <DeleteButton expense={expense} />
             </td>
         </tr>        
     )
