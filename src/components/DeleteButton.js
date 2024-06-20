@@ -1,21 +1,26 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../context/AppContext'
-
+import React, { useContext } from "react";
+import { AppContext } from "../context/AppContext";
+import PropTypes from "prop-types";
 
 const DeleteButton = (props) => {
-    const { dispatch } = useContext(AppContext);
+  const { dispatch } = useContext(AppContext);
 
-    const handleDecrease = () => {
+  const handleDecrease = () => {
+    dispatch({
+      type: "DELETE_EXPENSE",
+      payload: props.expense
+    });
+  };
 
-        dispatch({
-            type: 'DELETE_EXPENSE',
-            payload: props.expense
-        })
-    }
+  return (
+    <button type="button" className="btn btn-outline-dark" onClick={() => handleDecrease()}>
+      -
+    </button>
+  );
+};
 
-    return (
-        <button type="button" className="btn btn-outline-dark" onClick={() => handleDecrease()}>-</button>
-    )
+DeleteButton.propTypes = {
+  expense: PropTypes.object
 };
 
 export default DeleteButton;
