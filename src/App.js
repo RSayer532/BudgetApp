@@ -16,54 +16,56 @@ import CurrencyDropDown from "./components/CurrencyDropDown";
 /* eslint react/prop-types: "off"*/
 
 const App = () => {
-  return (
-    <AppProvider>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
-          <h1 className="mt-3">Company&apos;s Budget Allocation</h1>
-        </div>
-      </nav>
-      <div className="container">
-        <div className="row mt-4">
-          {
-            <div className="col-sm">
-              <Budget />
-            </div>
-          }
-          {
-            <div className="col-sm">
-              <Remaining />
-            </div>
-          }
-          {
-            <div className="col-sm">
-              <ExpenseTotal />
-            </div>
-          }
-          {
-            <div className="col-sm">
-              <CurrencyDropDown />
-            </div>
-          }
-        </div>
+    return (
+        <AppProvider>
+            <nav className="navbar navbar-expand-lg bg-body-tertiary">
+                <div className="container-fluid">
+                    <h1 className="mt-3">Company&apos;s Budget Allocation</h1>
+                </div>
+            </nav>
+            <div className="container">
+                <div className="row mt-4">
+                    {
+                        <div className="col-sm">
+                            <Budget />
+                        </div>
+                    }
+                    {
+                        <div className="col-sm">
+                            <Remaining />
+                        </div>
+                    }
+                    {
+                        <div className="col-sm">
+                            <ExpenseTotal />
+                        </div>
+                    }
+                    {
+                        <div className="col-sm">
+                            <CurrencyDropDown />
+                        </div>
+                    }
+                </div>
 
-        <div className="row mt-4">
-          {
-            <div className="col-sm">
-              <ExpenseList />
+                <div className="row mt-4">
+                    {
+                        <div className="col-sm">
+                            <ExpenseList />
+                        </div>
+                    }
+                </div>
+
+                <h2 className="mt-3">Change Allocation</h2>
+                <div className="row mt-3">
+                    <AllocationForm />
+                </div>
+
+                <div className="row mt-3">
+                    <h2 className="mt-3">Add an Allocation</h2>
+                    {<NewAllocationForm />}
+                </div>
             </div>
-          }
-        </div>
-
-        <h2 className="mt-3">Change Allocation</h2>
-        <div className="row mt-3">{<AllocationForm />}</div>
-
-        <div className="row mt-3">
-          <h2 className="mt-3">Add an Allocation</h2>
-          {<NewAllocationForm />}
-        </div>
-      </div>
-    </AppProvider>
-  );
+        </AppProvider>
+    );
 };
 export default App;
