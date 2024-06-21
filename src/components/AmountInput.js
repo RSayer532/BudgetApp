@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import Overlay from "react-bootstrap/Overlay";
 import PropTypes from "prop-types";
@@ -11,6 +11,14 @@ const AmountInput = ({ updateCost, expenseName, expenseCost }) => {
     const [showError, setShowError] = useState(false);
     const [message, setMessage] = useState("");
     const target = useRef(null);
+
+    useEffect(() => {
+        if (remaining > parseFloat(expenseCost) || expenseCost === "") {
+            setShowError(false);
+        } else {
+            setShowError(true);
+        }
+    }, [remaining]);
 
     const handleAmount = (value) => {
         let showMessage = false;
@@ -32,6 +40,8 @@ const AmountInput = ({ updateCost, expenseName, expenseCost }) => {
             setShowError(false);
             updateCost(value);
         }
+
+        updateCost(value);
     };
 
     return (
@@ -69,7 +79,7 @@ const AmountInput = ({ updateCost, expenseName, expenseCost }) => {
                             ...props.style
                         }}
                     >
-                        {message};
+                        {message}
                     </div>
                 )}
             </Overlay>

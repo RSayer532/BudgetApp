@@ -14,11 +14,16 @@ const Budget = () => {
     const target = useRef(null);
 
     useEffect(() => {
-        dispatch({
-            type: "SET_BUDGET",
-            payload: newBudget
-        });
-    }, [dispatch, newBudget]);
+        const totalExpenses = expenses.reduce((total, item) => {
+            return (total += item.cost);
+        }, 0);
+
+        if (budget > totalExpenses) {
+            setShowError(false);
+        } else {
+            setShowError(true);
+        }
+    })
 
     const handleNewBudget = (budgetString) => {
         // Check if user has cleared the input box
@@ -30,10 +35,13 @@ const Budget = () => {
         // Now to check if the value is a valid number
         const budgetValue = parseFloat(budgetString);
 
+        setNewBudget(budgetValue);
+
         const totalExpenses = expenses.reduce((total, item) => {
             return (total = total + item.cost);
         }, 0);
 
+       
         // Input element prevents user from inputting characters
         // Check that the budget input is more than the spent already and
         // the budget does not exceed �20,000 (or equivalent)
@@ -45,10 +53,14 @@ const Budget = () => {
             setMessage(`Budget cannot exceed ${currency.symbol} ${maximum_budget}`);
             setShowError(true);
         } else {
+            
             setShowError(false);
         }
 
-        setNewBudget(budgetValue);
+        dispatch({
+            type: "SET_BUDGET",
+            payload: budgetValue
+        });
     };
 
     return (
@@ -61,7 +73,7 @@ const Budget = () => {
                     type="number"
                     step="10"
                     className="form-control"
-                    value={budget}
+                    value={newBudget}
                     aria-label="Budget"
                     aria-describedby="budget-input"
                     onChange={(event) => handleNewBudget(event.target.value)}
