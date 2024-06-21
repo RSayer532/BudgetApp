@@ -14,10 +14,10 @@ const ExpenseItem = (props) => {
             <td>
                 {currency.symbol} {expense.cost.toFixed(2)}
             </td>
-            <td>
+            <td className="text-end">
                 <IncreaseButton expense={expense} />
             </td>
-            <td>
+            <td className="text-end">
                 <DeleteButton expense={expense} />
             </td>
         </tr>

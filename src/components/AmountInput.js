@@ -36,8 +36,8 @@ const AmountInput = ({ updateCost, expenseName, expenseCost }) => {
 
     return (
         <>
-            <div className="input-group">
-                <span className="input-group-text" ref={target} id="amount-input">
+            <div className="input-group amount-input">
+                <span className="input-group-text " ref={target}>
                     Amount: {currency.symbol}
                 </span>
                 <input

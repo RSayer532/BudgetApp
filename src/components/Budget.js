@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { AppContext } from "../context/AppContext";
 import Overlay from "react-bootstrap/Overlay";
+import "./css/Style.css";
 
 /* eslint no-unused-vars: "off"*/
 /* eslint react/prop-types: "off"*/
@@ -53,7 +54,7 @@ const Budget = () => {
     return (
         <>
             <div className="input-group mb-3">
-                <span className="input-group-text" ref={target} id="budget-input">
+                <span className="input-group-text input-btn" ref={target} id="budget-input">
                     Budget: {currency.symbol}{" "}
                 </span>
                 <input

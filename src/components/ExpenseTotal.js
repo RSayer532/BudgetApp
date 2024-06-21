@@ -9,7 +9,7 @@ const ExpenseTotal = () => {
 
     return (
         <div className={`input-group mb-3`}>
-            <span className="input-group-text" id="budget-input">
+            <span className="input-group-text input-btn" id="budget-input">
                 Spent so far: {currency.symbol}{" "}
             </span>
             <span

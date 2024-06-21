@@ -13,8 +13,12 @@ const DeleteButton = (props) => {
     };
 
     return (
-        <button type="button" className="btn btn-outline-dark" onClick={() => handleDecrease()}>
-            -
+        <button
+            type="button"
+            className="btn btn-danger rounded-circle"
+            onClick={() => handleDecrease()}
+        >
+            D
         </button>
     );
 };

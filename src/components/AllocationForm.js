@@ -1,10 +1,11 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import ActionButton from "./ActionButton";
 import AmountInput from "./AmountInput";
+import "./css/Style.css";
 
 const AllocationForm = () => {
-    const { dispatch, currency, remaining, expenses, action } = useContext(AppContext);
+    const { dispatch, expenses, action } = useContext(AppContext);
     const [name, setName] = useState("");
     const [cost, setCost] = useState("");
     const [disabled, setDisabled] = useState("");
@@ -52,14 +53,12 @@ const AllocationForm = () => {
         <>
             {/* Department dropdown*/}
             <div className="col-sm">
-                <div className="input-group">
-                    <div className="input-group-prepend">
-                        <label className="input-group-text" htmlFor="allocation-input">
-                            Department
-                        </label>
-                    </div>
+                <div className="input-group mb-3 department-input">
+                    <label className="input-group-text input-btn" htmlFor="allocation-input">
+                        Department
+                    </label>
                     <select
-                        className="custom-select"
+                        className="form-select"
                         id="allocation-input"
                         onChange={(event) => setName(event.target.value)}
                         value={name}
@@ -75,27 +74,27 @@ const AllocationForm = () => {
             </div>
 
             {/* Action buttons */}
-            <div className="col-sm input-group">
+            <div className="col col-2">
                 <div className="row">
                     <div className="col">
-                        <ActionButton actionName="Add" />
+                        <ActionButton actionName="Add" colourClass="success" />
                     </div>
                     <div className="col">
-                        <ActionButton actionName="Reduce" />
+                        <ActionButton actionName="Reduce" colourClass="danger" />
                     </div>
                 </div>
             </div>
 
             {/* Amount input */}
-            <div className="col-sm">
+            <div className="col amount-input">
                 <AmountInput updateCost={setCost} expenseName={name} expenseCost={cost} />
             </div>
 
             {/* Submit button */}
-            <div className="col-sm">
+            <div className="col col-2">
                 <button
                     type="button"
-                    className={`btn btn-dark ${disabled}`}
+                    className={`btn ${disabled} submit-btn`}
                     onClick={submitAllocation}
                 >
                     Edit

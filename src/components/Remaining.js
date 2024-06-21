@@ -10,7 +10,7 @@ const Remaining = () => {
     const alertType = totalExpenses > budget ? "alert-danger" : "alert-success";
     return (
         <div className={`input-group mb-3`}>
-            <span className={`btn-${alertType} input-group-text`} id="budget-input">
+            <span className={`btn-${alertType} input-group-text input-btn`} id="remaining">
                 Remaining {currency.symbol}{" "}
             </span>
             <span

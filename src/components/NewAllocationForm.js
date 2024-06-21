@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import AmountInput from "./AmountInput";
+import "./css/Style.css";
 
 const NewAllocationForm = () => {
     const { dispatch } = useContext(AppContext);
@@ -35,13 +36,11 @@ const NewAllocationForm = () => {
     return (
         <div>
             <div className="row">
-                <div className="col-sm">
-                    <div className="input-group mb-3">
-                        <div className="input-group-prepend">
-                            <span className="input-group-text" id="department-input">
-                                Department
-                            </span>
-                        </div>
+                <div className="col">
+                    <div className="input-group mb-3 department-input">
+                        <span className="input-group-text input-btn" id="department-input">
+                            Department
+                        </span>
                         <input
                             type="text"
                             value={name}
@@ -54,14 +53,16 @@ const NewAllocationForm = () => {
                     </div>
                 </div>
 
-                <div className="col-sm">
+                <div className="col col-2"></div>
+
+                <div className="col">
                     <AmountInput updateCost={setCost} expenseName={name} expenseCost={cost} />
                 </div>
 
-                <div className="col-sm">
+                <div className="col col-2">
                     <button
                         type="button"
-                        className={`btn btn-dark ${disabled}`}
+                        className={`btn ${disabled} submit-btn`}
                         onClick={submitNewAllocation}
                     >
                         Add

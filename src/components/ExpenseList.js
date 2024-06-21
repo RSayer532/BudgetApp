@@ -3,18 +3,18 @@ import { AppContext } from "../context/AppContext";
 import ExpenseItem from "./ExpenseItem";
 
 const ExpenseList = () => {
-    const { expenses } = useContext(AppContext);
+    const { expenses, currency } = useContext(AppContext);
 
     return (
-        <table className="table table-hover">
-            <thead className="thead-dark">
+        <table className="table">
+            <thead className="thead">
                 <tr>
                     <th scope="col">Department</th>
                     <th scope="col">Allocated Budget</th>
-                    <th scope="col" className="col-2">
-                        Increase by 10
+                    <th scope="col" className="col-1 text-end">
+                        + {currency.symbol} 10
                     </th>
-                    <th scope="col" className="col-2">
+                    <th scope="col" className="col-1 text-end">
                         Delete
                     </th>
                 </tr>

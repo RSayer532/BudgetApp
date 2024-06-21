@@ -16,7 +16,7 @@ const IncreaseButton = (props) => {
     };
 
     return (
-        <button type="button" className="btn btn-outline-dark" onClick={handleIncrease}>
+        <button type="button" className="btn-success btn rounded-circle" onClick={handleIncrease}>
             +
         </button>
     );

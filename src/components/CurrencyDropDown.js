@@ -31,7 +31,7 @@ const CurrencyDropDown = () => {
 
     return (
         <DropdownButton
-            variant="outline-secondary"
+            variant="outline-secondary float-end"
             id="dropdown-basic-button"
             title={`Currency ${currency.symbol} (${currency.name})`}
         >

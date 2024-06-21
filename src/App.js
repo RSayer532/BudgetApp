@@ -26,33 +26,31 @@ const App = () => {
             <div className="container">
                 <div className="row mt-4">
                     {
-                        <div className="col-sm">
+                        <div className="col">
                             <Budget />
                         </div>
                     }
                     {
-                        <div className="col-sm">
+                        <div className="col">
                             <Remaining />
                         </div>
                     }
                     {
-                        <div className="col-sm">
+                        <div className="col">
                             <ExpenseTotal />
                         </div>
                     }
                     {
-                        <div className="col-sm">
+                        <div className="col">
                             <CurrencyDropDown />
                         </div>
                     }
                 </div>
 
-                <div className="row mt-4">
-                    {
-                        <div className="col-sm">
-                            <ExpenseList />
-                        </div>
-                    }
+                <div className="row mt-4 justify-content-center">
+                    <div className="col">
+                        <ExpenseList />
+                    </div>
                 </div>
 
                 <h2 className="mt-3">Change Allocation</h2>
